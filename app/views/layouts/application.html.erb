@@ -47,10 +47,15 @@
           <li class="nav-item">
             <%= link_to 'Developers', developers_path, class: "nav-link" %>
           </li>
-            <li class="nav-item">
-              <%= link_to 'Project', projects_path, class: "nav-link" %>
-            </li>
-        </ul>
+          <li class="nav-item">
+            <%= link_to 'Project', projects_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'subscribe', payment_create_path, method: :data: { turbo_method: :create}: "nav-link btn btn-link p-0" %>
+          </li>
+         
+          </ul>
+
       <% end %>
     </div>
 

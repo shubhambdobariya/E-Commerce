@@ -102,3 +102,4 @@ gem 'slack-notifier'
 
 gem 'pundit'
 
+gem 'stripe'

@@ -50,11 +50,10 @@
             <%= form.date_field :end_date, class: "form-control",id: "project_end_date", placeholder: 'Enter the end date' %>
           </div>
 
-         
-          <div class="form-group row mt-3">
-            <%= form.label :developer_id, "Select Developer:".html_safe %>
-            <%= form.select :developer_id, developer_dropdown_options, { include_blank: 'Select Developer' }, class: "form-control" %>
-          </div>
+          <div class="form-group row mt-3 d-block">
+          <%= form.label :developers, "Select Developers:".html_safe %><br>
+          <%= form.collection_check_boxes(:developer_ids, Developer.all, :id, :name) %>
+        </div>
 
           <div>
             <%= form.submit "Create", class: "btn btn-primary row mt-3" %>
