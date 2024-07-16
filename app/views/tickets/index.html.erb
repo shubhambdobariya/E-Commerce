@@ -1,0 +1,46 @@
+<div class="text-end mt-4">
+  <%= link_to new_ticket_path, class: 'btn btn-outline-secondary', style: 'color: black;' do %>
+    Add Ticket
+  <% end %>
+</div>
+
+<div class="mt-4">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="gray-header">Title</th>
+        <th class="gray-header">Status</th>
+        <th class="gray-header">Description</th>
+        <th class="gray-header">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @tickets.present? %>
+        <% @tickets.each do |ticket| %>
+          <tr>
+            <td><%= ticket.title.capitalize %></td>
+            <td><%= ticket.status.capitalize %></td>
+            <td><%= ticket.description.capitalize %></td>
+            <td>
+              <%= link_to ticket do %>
+                <i class="fa-solid fa-eye text-primary"></i>
+              <% end %>
+              |
+              <%= link_to edit_ticket_path(ticket) do %>
+                <i class="fa-solid fa-pen-to-square text-warning"></i>
+              <% end %>
+              |
+              <%= button_to ticket_path(ticket), method: :delete, data: { turbo_confirm: "Are you sure to delete?" }, class: 'btn btn-link p-0' do %>
+                <i class="fa-solid fa-trash text-danger"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="4">No tickets available</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

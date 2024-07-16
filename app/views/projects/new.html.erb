@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add The Project</title>
+</head>
+<body>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-5">
+      <div>
+        <h1 class="product-heading">Project Creation Form</h1>
+      </div>
+      <%= form_with model: @project, method: :post do |form| %>
+        <div class="project-form">
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :project_name, "Project Name: <span class='required'>*</span>".html_safe %>
+            <%= form.text_field :project_name, class: "form-control", placeholder: 'Enter your project name' %>
+            <% if @project.errors[:project_name].any? %>
+              <div style="color: red">
+                <%= @project.errors.full_messages_for(:project_name).join(", ") %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :status, "Status:  <span class='required'>*</span>".html_safe %>
+            <%= form.select :status, Project.statuses.keys.map { |status| [status.humanize, status] }, { include_blank: 'Select Status' }, class: "form-control" %>
+            <% if @project.errors[:status].any? %>
+              <div style="color: red">
+                <%= @project.errors.full_messages_for(:status).join(", ") %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :start_date, "Start Date: <span class='required'>*</span>".html_safe %>
+            <%= form.date_field :start_date, class: "form-control",id: "project_start_date", placeholder: 'Enter the start date' %>
+            <% if @project.errors[:start_date].any? %>
+              <div style="color: red">
+                <%= @project.errors.full_messages_for(:start_date).join(", ") %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :end_date, "End Date:" %>
+            <%= form.date_field :end_date, class: "form-control",id: "project_end_date", placeholder: 'Enter the end date' %>
+          </div>
+
+         
+          <div class="form-group row mt-3">
+            <%= form.label :developer_id, "Select Developer:".html_safe %>
+            <%= form.select :developer_id, developer_dropdown_options, { include_blank: 'Select Developer' }, class: "form-control" %>
+          </div>
+
+          <div>
+            <%= form.submit "Create", class: "btn btn-primary row mt-3" %>
+            <%= link_to 'Back', projects_path, class: "btn btn-secondary margin-button" %>
+            </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</body>
+</html>

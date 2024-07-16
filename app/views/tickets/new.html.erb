@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add The Ticket</title>
+</head>
+
+<body>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-5">
+      <div>
+        <h1 class="product-heading">Ticket Creation Form</h1>
+      </div>
+
+      <%= form_with model: @ticket do |form| %>
+        <%= form.hidden_field :project_id, name:'project_id', value:@project.id %>
+        <div class="project-form">
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :title, "Ticket Title: <span class='required'>*</span>".html_safe %>
+            <%= form.text_field :title, class: "form-control", placeholder: 'Enter your Title' %>
+            <% if @ticket.errors[:title].any? %>
+              <div style="color: red">
+                <%= @ticket.errors.full_messages_for(:title).join(", ") %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :status, "Status:  <span class='required'>*</span>".html_safe %>
+            <%= form.select :status, Ticket.statuses.keys.map { |status| [status.humanize, status] }, { include_blank: 'Select Status' }, class: "form-control" %>
+            <% if @ticket.errors[:status].any? %>
+              <div style="color: red">
+                <%= @ticket.errors.full_messages_for(:status).join(", ") %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :description, "Description: <span class='required'>*</span>".html_safe %>
+            <%= form.text_area :description, class: "form-control", placeholder: 'Enter your Description' %>
+            <% if @ticket.errors[:description].any? %>
+              <div style="color: red">
+                <%= @ticket.errors.full_messages_for(:description).join(", ") %>
+              </div>
+            <% end %>
+          </div>
+          <%= form.submit "Create", class: "btn btn-primary row mt-3" %>
+          <%= link_to 'Back', tickets_path, class: "btn btn-secondary margin-button" %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</body>
+</html>

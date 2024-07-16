@@ -1,0 +1,43 @@
+<h1>Developer Form</h1>
+<%= form_with(model: @developer, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :name, "Name: <span class='required'>*</span>".html_safe %>
+    <%= form.text_field :name, class: "form-control", placeholder: 'Enter your Name' %>
+    <% if @developer.present? %>
+      <div>
+        <% @developer.errors.full_messages_for(:name).each do |message| %>
+          <div style="color: red">
+            <%= message %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field mt-3">
+    <%= form.label :position, "Position: <span class='required'>*</span>".html_safe %>
+    <%= form.select :position, options_for_select(['ROR-Developer', 'WEB-Designer', 'Graphic_Designer', 'Tester']), { include_blank: 'Select Position' }, class: "form-control" %>
+    <% if @developer.present? %>
+      <div>
+        <% @developer.errors.full_messages_for(:position).each do |message| %>
+          <div style="color: red">
+            <%= message %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field mt-3">
+  <%= form.label :projects %>
+  <%= project_checkboxes(Project.all) %>
+</div>
+
+
+  <div>
+    <%= form.submit "create", class: "btn btn-primary row mt-3" %>
+    <%= link_to 'Back', developers_path, class: "btn btn-secondary margin-button" %>
+    </div>
+<% end %>
+
+

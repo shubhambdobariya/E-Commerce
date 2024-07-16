@@ -1,0 +1,14 @@
+<%= form_with model: @developer, method: :patch do |form| %>
+  <div class="field">
+    <%= form.label :name, "Name: " %>
+    <%= form.text_field :name, class: "form-control", placeholder: 'Enter your Title' %>
+  </div>
+  <div class="field">
+    <%= form.label :position, "Position: <span class='required'>*</span>".html_safe %>
+    <%= form.select :position, options_for_select(['ROR-Developer', 'WEB-Designer', 'Graphic_Designer', 'Tester'], @developer.position), { include_blank: 'Select Position' }, class: "form-control", id: "developer_position" %>
+  </div>
+  <div>
+    <%= form.submit "Update", class: "btn btn-primary row mt-3" %>
+    <%= link_to 'Back', developers_path, class: "btn btn-secondary margin-button" %>
+  </div>
+<% end %>

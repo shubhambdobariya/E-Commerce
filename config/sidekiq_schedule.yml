@@ -1,0 +1,7 @@
+send_welcome_email_job:
+  cron: '0 0 * * *'  # runs every day at midnight
+  class: 'SendWelcomeEmailWorker'
+  queue: 'default'
+  args:
+    - 1  # Replace with actual user_id
+    - 1  # Replace with actual developer_id

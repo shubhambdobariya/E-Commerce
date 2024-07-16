@@ -1,0 +1,39 @@
+<table class="table table-bordered">
+  <div class="text-end mt-4">
+    <%= link_to new_category_path, class: 'btn btn-outline-secondary', style: 'color: black;' do %>
+      Add Category
+      <i class="bi bi-person-circle"></i>
+    <% end %>
+  </div>
+
+  <div class="mt-4">
+    <thead>
+      <tr>
+        <th class="gray-header">Name</th>
+        <th class="gray-header">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.name.capitalize %></td>
+          <td>
+            <%= link_to category_path(category), title: "View" do %> 
+              <i class="fa-solid fa-eye text-primary" aria-hidden="true"></i>
+            <% end %> |
+            <%= link_to edit_category_path(category), title: "Edit" do %>
+              <i class="fa-solid fa-pen-to-square text-warning" aria-hidden="true"></i>
+            <% end %> |
+             <%= link_to category_path(category), method: :delete, title: "Delete", data: { turbo_method: :delete, turbo_confirm: 'Are you sure delete the data?' }, class: "btn btn-sm" do %>
+              <i class="fa-solid fa-trash text-danger"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </div>
+</table>
+
+<div class="d-flex justify-content-center mt-4">
+  <%= will_paginate @categories, renderer: BootstrapPagination::Rails %>
+</div>

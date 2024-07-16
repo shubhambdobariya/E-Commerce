@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-5">
+      <div>
+        <h1 class="product-heading"> Project Created Form</h1>
+      </div>
+      <%= form_for @project, method: :patch do |form| %>
+        <div class="project-form">
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :project_name, "Project Name: <span class='required'>*</span>".html_safe %>
+            <%= form.text_field :project_name, class: "form-control", placeholder: 'Enter your Project Name' %>
+            <div>
+              <% @project.errors.full_messages_for(:project_name).each do |message| %>
+                <div style="color: red">
+                  <%= message %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :status, "Status:" %>
+            <%= form.text_area :status, class: "form-control", placeholder: 'Enter your Status' %>
+          </div>
+
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :start_date, "Start Date: <span class='required'>*</span>".html_safe %>
+            <%= form.text_field :start_date, class: "form-control", placeholder: 'Enter the Start Date' %>
+          </div>
+
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :end_date, "End Date:" %>
+            <%= form.text_field :end_date, class: "form-control", placeholder: 'Enter the End Date' %>
+            <div>
+              <% @project.errors.full_messages_for(:end_date).each do |message| %>
+                <div style="color: red">
+                  <%= message %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class=" form-group field">
+            <%= form.label :developers %><br>
+            <%= form.collection_check_boxes :developer_ids, Developer.all, :id, :name do |b| %>
+              <div class="checkbox">
+                <%= b.check_box %>
+                <%= b.label %>
+              </div>
+            <% end %>
+          </div>
+          <div>
+            <%= form.submit "Update", class: "btn btn-primary row mt-3" %>
+            <%= link_to 'Back', projects_path, class: "btn btn-secondary margin-button" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

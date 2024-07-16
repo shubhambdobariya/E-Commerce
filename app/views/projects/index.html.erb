@@ -1,0 +1,59 @@
+<!-- app/views/projects/index.html.erb -->
+
+<div class="text-end mt-4">
+  <%= link_to new_project_path, class: 'btn btn-outline-secondary', style: 'color: black;' do %>
+    Add Project
+    <i class="bi bi-person-circle"></i>
+  <% end %>
+</div>
+
+<div class="mt-4">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="gray-header">Project Name</th>
+        <th class="gray-header">Status</th>
+        <th class="gray-header">Start Date</th>
+        <th class="gray-header">End Date</th>
+        <th class="gray-header">Action</th>
+        <th class="gray-header">Developers</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        
+        <% if policy(project).show? %>  
+          <tr>
+            <td><%= link_to project.project_name.capitalize, project_path(project) %></td>
+            <td><%= project.status.capitalize %></td>
+            <td><%= project.start_date %></td>
+            <td><%= project.end_date %></td>
+            <td>
+              <%= link_to project, title: "View" do %>
+                <i class="fa-solid fa-eye text-primary"></i>
+              <% end %>
+              |
+              <%= link_to edit_project_path(project), title: "Edit" do %>
+                <i class="fa-solid fa-pen-to-square text-warning"></i>
+              <% end %>
+              |
+              <%= link_to project_path(project), method: :delete, title: "Delete", data: { turbo_method: :delete, turbo_confirm: 'Are you sure delete the data?' }, class: "btn btn-sm" do %>
+                <i class="fa-solid fa-trash text-danger"></i>
+              <% end %>
+            </td>
+            <td>
+              <% project.developers.each do |developer| %>
+                <%= link_to developer.name, developer_path(developer) %><br>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+  <%= will_paginate @projects, renderer: BootstrapPagination::Rails %>
+</div>

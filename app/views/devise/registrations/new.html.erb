@@ -1,0 +1,55 @@
+<div class="container-xl px-4 mt-4">
+  <div class="row justify-content-center">
+    <div class="col-xl-5">
+      <div class="card mb-4">
+        <div class="card-header text-center">Sign up</div>
+        <div class="card-body">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-horizontal', multipart: true }) do |f| %>
+
+            <div class="mb-3">
+              <%= f.label :firstname, class: "small mb-1" %>
+              <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", class: "form-control", placeholder: "Enter your First Name" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :lastname, class: "small mb-1" %>
+              <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname", class: "form-control", placeholder: "Enter your Last Name" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :email, class: "small mb-1" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Enter your email" %>
+              <% if resource.errors[:email].present? %>
+                <div class="text-danger small"><%= resource.errors[:email].include?("can't be blank") ? "Email can't be blank" : resource.errors[:email].join(", ") %></div>
+              <% end %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :password, class: "small mb-1" %>
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Enter your password" %>
+              <% if resource.errors[:password].present? %>
+                <div class="text-danger small"><%= resource.errors[:password].include?("can't be blank") ? "Password can't be blank" : resource.errors[:password].join(", ") %></div>
+              <% end %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :password_confirmation, class: "small mb-1" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm your password" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :avatar, class: "small mb-1" %>
+              <%= f.file_field :avatar, class: "form-control", accept: "image/*" %>
+            </div>
+            
+            <div class="d-grid">
+              <%= f.submit "Sign up", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+          <%= render "devise/shared/links" %>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

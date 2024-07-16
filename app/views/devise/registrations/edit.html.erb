@@ -1,0 +1,81 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+
+  <div class="col-md-3 mb-3">
+    <label for="avatar-upload" style="cursor: pointer;">
+      <% if @user && @user.avatar.attached? %>
+        <img src="<%= url_for(@user.avatar) %>" class="img-fluid rounded-circle" style="max-width: 70px;" id="avatar-preview">
+          <% else %>
+             <p>No avatar available</p>
+          <% end %>
+    </label>
+    <%= file_field_tag :avatar, accept: 'image/*', id: "avatar-upload", style: "display: none;" %>
+  </div>
+
+  <div class="row gx-4 mb-3 mt-3">
+    <div class="col-md-6">
+      <%= f.label :firstname, class: "small mb-1" %>
+      <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", class: "form-control", placeholder: "Enter your First Name" %>
+    </div>
+    <div class="col-md-6">
+      <%= f.label :lastname, class: "small mb-1" %>
+      <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname", class: "form-control", placeholder: "Enter your Last Name" %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :email, class: "small mb-1" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Enter your email address" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :password, class: "small mb-1" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :password_confirmation, class: "small mb-1" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :current_password, class: "small mb-1" %>
+    <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+  </div>
+
+  <div>
+    <%= f.submit "Update", class: "btn btn-primary btn-block" %>
+  </div>
+<% end %>
+<%= link_to "Back", :back, class: "btn btn-secondary mt-2" %>
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const avatarUpload = document.getElementById("avatar-upload");
+    const avatarPreview = document.getElementById("avatar-preview");
+
+    if (avatarUpload && avatarPreview) {
+      avatarUpload.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+          console.log('aksgiuadhfv')
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            avatarPreview.src = e.target.result;
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+  });
+</script>

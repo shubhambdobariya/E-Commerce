@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_name: MyString
+  status: MyString
+  start_date: 2024-05-21
+  end_date: 2024-05-21
+
+two:
+  project_name: MyString
+  status: MyString
+  start_date: 2024-05-21
+  end_date: 2024-05-21

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <style>
+    /* Define your email styles here */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    .container {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      border-radius: 5px 5px 0 0;
+    }
+    .content {
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Welcome to My E-Commerce Site</h1>
+    </div>
+    <div class="content">
+      <p>Hello <%= @user.email%>,</p>
+      <p>Thank you for joining My E-Commerce Site! Were excited to have you on board.</p>
+      
+      <h2>New Developer Created</h2>
+      <p>A new developer, <%= @developer.name %>, has been created with the position <%= @developer.position %> on <%= Time.now.strftime("%B %d, %Y") %>.</p>
+      
+      <p>If you have any questions, feel free to reply to this email.</p>
+      <p>Best regards,<br> The My E-Commerce Site Team</p>
+    </div>
+  </div>
+</body>
+</html> 

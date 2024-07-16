@@ -1,0 +1,11 @@
+<%= form_with model: @category, method: :patch do |form| %>
+  <div class="field">
+    <%= form.label :name, "Name: " %>
+    <%= form.text_field :name, class: "form-control", placeholder: 'Enter your Title' %>
+  </div>
+
+  <div>
+    <%= form.submit "update", class: "btn btn-primary row mt-3" %>
+    <%= link_to 'Back', categories_path, class: "btn btn-secondary margin-button"%>
+  </div>
+<% end %>

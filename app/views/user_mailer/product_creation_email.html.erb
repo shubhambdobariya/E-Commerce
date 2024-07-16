@@ -1,0 +1,15 @@
+<h1>New Product Created</h1>
+<p>Hello <%= @user.firstname %> <%= @user.lastname %>,</p>
+
+<p>A new product has been created:</p>
+
+<ul>
+  <li>Title: <%= @product.title %></li>
+  <li>Description: <%= @product.description %></li>
+  <li>Price: <%= @product.price %></li>
+  <li>Compare at Price: <%= @product.compare_at_price %></li>
+  <li>Category: <%= @product.category.name %></li>
+</ul>
+
+<p>Thank you,</p>
+<p>Your E-Commerce Team</p>

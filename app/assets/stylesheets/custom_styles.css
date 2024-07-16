@@ -1,0 +1,98 @@
+/* custom_styles.css */
+::placeholder {
+    color: darkgrey !important;
+}
+
+.”product-heading″ {
+    margin-top: 80px !important;
+}
+
+.product-form {
+    margin-top: 40px !important;
+}
+
+.required {
+    color: red;
+}
+
+.navbar {
+    margin: 20px;
+}
+
+button {
+    background: none;
+    border: none;
+    color: rgb(0, 123, 255);
+}
+
+button:hover {
+    text-decoration: underline;
+}
+
+.badge {
+    color: white;
+}
+
+.Assign-tag {
+    border: none;
+}
+
+.no-border {
+    border: none;
+    text-align: center;
+}
+
+.nav-text-color {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.large_icon {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.dropdown-toggle {
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.error-messages {
+    color: red;
+}
+
+.button-margin{
+    margin-left: auto!important;
+}
+
+.margin-button{
+    margin-left: 30px !important;
+    margin-top: 18px !important;
+}
+
+.gray-header {
+    background-color: gray !important;
+}
+
+
+
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.table-bordered {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.color-x{
+    color: black !important;
+    text-decoration: none!important;
+}

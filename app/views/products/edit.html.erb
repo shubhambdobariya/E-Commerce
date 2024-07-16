@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag 'custom_styles.css' %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-5">
+      <div>
+        <h1 class="product-heading">Product Created Form</h1>
+      </div>
+
+      <%= form_with model: @product, method: :patch do |form| %>
+        <div class="product-form">
+          <div class="form-group row mt-3">
+            <%= form.label :title, 'Title: <span class="text-danger">*</span>'.html_safe %>
+            <%= form.text_field :title, class: "form-control", placeholder: 'Enter your Title', required: true %>
+          </div>
+
+          <div class="form-group row mt-3">
+            <%= form.label :description, "Description:" %>
+            <%= form.text_area :description, class: "form-control", placeholder: 'Enter your Description' %>
+          </div>
+
+          <div class="form-group row mt-3">
+            <%= form.label :price, 'Price: <span class="text-danger">*</span>'.html_safe %>
+            <%= form.text_field :price, class: "form-control", placeholder: 'Enter the price', required: true %>
+          </div>
+
+          <div class="form-group row mt-3">
+            <%= form.label :compare_at_price, "Compare at Price:" %>
+            <%= form.text_field :compare_at_price, class: "form-control", placeholder: 'Enter the compare_at_price' %>
+          </div>
+
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :category_id, 'Category' %>
+            <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: true }, { class: "form-control dropdown" } %>
+          </div>
+
+          <div>
+            <%= form.submit "Update", class: "btn btn-primary row mt-3" %>
+            <%= link_to 'Back', products_path, class: "btn btn-secondary margin-button" %>
+          </div>
+          
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

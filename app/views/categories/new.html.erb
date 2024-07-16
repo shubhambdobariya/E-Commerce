@@ -1,0 +1,18 @@
+<h1>Category Form</h1>
+<%= form_with(model: @category, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :name, "Name: <span class='required'>*</span>".html_safe %>
+    <%= form.text_field :name, class: "form-control", placeholder: 'Enter your Title' %>
+    <div>
+      <% @category.errors.full_messages_for(:name).each do |message| %>
+        <div style="color: red">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <%= form.submit "create", class: "btn btn-primary row mt-3" %>
+    <%= link_to 'Back', categories_path, class: "btn btn-secondary margin-button" %>
+    </div>
+<% end %>

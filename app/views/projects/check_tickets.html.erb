@@ -1,0 +1,46 @@
+<table class="table ">
+  <thead>
+    <tr>
+      
+      <th>Title</th>
+      <th>     </th>
+      <th>Status</th>
+      <th>Developer</th>
+      <th>Assign</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        
+        <td><%= link_to ticket.title, ticket_path(ticket) %></td>
+        
+        <td>
+          <%= form_tag(assign_developer_ticket_path(ticket), method: :patch) do %>
+            <%= hidden_field_tag 'ticket_id', ticket.id %>
+        <td>
+          <%= select_tag 'status', options_for_select(Ticket.statuses.keys.map { |w| [w.humanize, w] }, ticket.status), { class: 'no-border' } %>
+        </td>
+        <td>
+          <%= select_tag 'developer_id', options_from_collection_for_select(Developer.all, 'id', 'name'), { prompt: 'Assign Developer', class: 'no-border' } %>
+        </td>
+        <td>
+          <%= submit_tag "ASSIGN", class: 'text-success Assign-tag background_color_link' %>
+        </td>
+          <% end %>
+        </td>
+        
+        <td>
+          <%= link_to 'EDIT', edit_ticket_path(ticket), class: "text-primary" %>
+        </td>
+        
+        <td>
+          <%= button_to 'DELETE', ticket_path(ticket), method: :delete, data: { confirm: "Are you sure to delete?" }, class: "text-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Back', projects_path, class: "btn btn-secondary margin-button" %>
