@@ -51,7 +51,7 @@
             <%= link_to 'Project', projects_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'payment',payment_create_path,class: "nav-link"%>
+            <%= link_to 'payment',payments_path,class: "nav-link" , method: :post, data: { turbo_method: "post" } %>
           </li>
         </ul>
       <% end %>
