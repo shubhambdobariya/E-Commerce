@@ -6,8 +6,8 @@ class PaymentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get create" do
-    get payments_create_url
+  test "should post create" do
+    post payments_create_url
     assert_response :success
   end
 end

@@ -51,11 +51,9 @@
             <%= link_to 'Project', projects_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'subscribe', payment_create_path, method: :data: { turbo_method: :create}: "nav-link btn btn-link p-0" %>
+            <%= link_to 'payment',payment_create_path,class: "nav-link"%>
           </li>
-         
-          </ul>
-
+        </ul>
       <% end %>
     </div>
 
@@ -92,6 +90,8 @@
 
   </div>
 </nav>
+
+
 
 <div class="container mt-4">
   <header>

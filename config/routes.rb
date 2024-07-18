@@ -3,12 +3,11 @@ require 'resque/server'
 
 
 Rails.application.routes.draw do
-  get 'payments/create'
-  # post 'payment/create', to: 'payments#create', as: 'payment_create'
-  # get 'payments/success', to: 'payments#success', as: 'payments_success'
-  # get 'payments/cancel', to: 'payments#cancel', as: 'payments_cancel'
 
-  resources :payments, only: [:create]
+
+
+ 
+  post 'payments', to: 'payments#create', as: 'payments'
   mount Sidekiq::Web => '/sidekiq'
   mount Resque::Server.new, at: "/resque"
   
