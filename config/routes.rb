@@ -1,17 +1,14 @@
 require 'sidekiq/web'
 require 'resque/server'
 
-
 Rails.application.routes.draw do
-
-
-
- 
   post 'payments', to: 'payments#create', as: 'payments'
+  get 'success', to: 'payments#success', as: 'payments_success'
+  get 'cancel', to: 'payments#cancel', as: 'payments_cancel'
+  
   mount Sidekiq::Web => '/sidekiq'
   mount Resque::Server.new, at: "/resque"
-  
-  
+
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   get 'user_profile', to: 'users#profile', as: 'user_profile'
