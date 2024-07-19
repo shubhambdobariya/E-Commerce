@@ -14,11 +14,6 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
-  def show
-    @comment = @product.comments.build
-    @product_presenter = ProductPresenter.new(@product)
-  end
-  
   def create
     @product = Product.new(product_params)
     if @product.save
@@ -33,7 +28,13 @@ class ProductsController < ApplicationController
     end
   end
 
+  def show
+    @comment = @product.comments.build
+    @product_presenter = ProductPresenter.new(@product)
+  end
+  
   def edit
+    # You may add any specific logic for the edit action here if needed
   end
 
   def update

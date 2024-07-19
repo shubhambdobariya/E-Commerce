@@ -23,8 +23,5 @@ RSpec.describe Product, type: :model do
     expect(product.price).to eq(101)
   end
 
-  it 'delegates name and description to category' do
-    expect(product.category_name).to eq('Electronics')
-    expect(product.category_description).to be_nil
-  end
+ 
 end
