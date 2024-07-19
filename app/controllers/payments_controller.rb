@@ -33,6 +33,6 @@ class PaymentsController < ApplicationController
                                                  success_url: root_path(payment_status: "success"),
                                                  cancel_url: root_path(payment_status: "cancel")
                                                })
-    redirect_to session.url, allow_other_host: true
+     session.url, allow_other_host: true
   end
 end

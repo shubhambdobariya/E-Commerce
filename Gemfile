@@ -63,6 +63,12 @@ group :development, :test do
   gem 'letter_opener'
   gem 'rubocop', require: false
   gem 'brakeman', require: false
+  gem 'rspec-rails', '~> 5.0'
+
+  gem 'faker'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner-active_record'
+ 
 end
 
 group :development do
@@ -78,8 +84,9 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'factory_bot_rails'
 end
 
 gem 'font-awesome-sass', '~> 6.0'
