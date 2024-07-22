@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :categories
   has_many :developers
+  
 
 before_save :set_admin_flag
 

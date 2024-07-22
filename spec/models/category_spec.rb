@@ -13,7 +13,7 @@ RSpec.describe Category, type: :model do
   end
 
   it "is not valid without a user" do
-    category = FactoryBot.build(:category, user: nil)
+    category = FactoryBot.build(:category)
     expect(category).to_not be_valid
   end
 

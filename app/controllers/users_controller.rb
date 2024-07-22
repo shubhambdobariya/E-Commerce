@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
   private
 
-  # Strong parameters for user attributes
   def user_params
     permitted_attrs = [:firstname, :lastname, :avatar,]
     permitted_attrs << :admin if current_user.admin?

@@ -110,3 +110,5 @@ gem 'slack-notifier'
 gem 'pundit'
 
 gem 'stripe'
+
+gem 'rack-cors'

@@ -28,6 +28,7 @@ module ECommerce
 
     config.active_job.queue_adapter = :sidekiq
     config.autoload_paths += %W(#{config.root}/app/presenters)
-
+    config.hosts << "3a6c-117-97-166-6.ngrok-free.app"
+  
   end
 end

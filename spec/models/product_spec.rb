@@ -22,6 +22,4 @@ RSpec.describe Product, type: :model do
     product.save
     expect(product.price).to eq(101)
   end
-
- 
 end
