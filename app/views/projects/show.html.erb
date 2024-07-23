@@ -36,3 +36,29 @@
     <p>No comments to display.</p>
   </div>
 <% end %>
+
+<% if @project.developers.any? %>
+  <div class="mt-4">
+    <h4>Developer Details:</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @project.developers.each do |developer| %>
+          <tr>
+            <td><%= link_to developer.name, developer_path(developer) %></td>
+            <td><%= developer.position %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="mt-4">
+    <p>No developers associated with this project.</p>
+  </div>
+<% end %>

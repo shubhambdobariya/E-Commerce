@@ -1,0 +1,26 @@
+<!-- app/views/users/_assign_projects_modal.html.erb -->
+
+<div class="modal fade" id="assignProjectsModal-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="assignProjectsModalLabel-<%= user.id %>" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="assignProjectsModalLabel-<%= user.id %>">Assign Projects to <%= user.firstname %> <%= user.lastname %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with url: assign_project_update_user_path(user), method: :patch, local: true do |form| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= form.label :project_id, 'Select Project' %>
+            <%= form.collection_select :project_id, Project.all, :id, :name, prompt: 'Select a project', class: 'form-control' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= form.submit 'Assign Project', class: 'btn btn-primary' %>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

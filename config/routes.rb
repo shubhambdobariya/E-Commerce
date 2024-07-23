@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'success', to: 'payments#success', as: 'payments_success'
   get 'cancel', to: 'payments#cancel', as: 'payments_cancel'
   post 'webhooks/stripe', to: 'webhooks#stripe'
+  get 'assign_projects', to: 'projects#assign_projects', as: 'assign_projects'
+
   
   mount Sidekiq::Web => '/sidekiq'
   mount Resque::Server.new, at: "/resque"
@@ -14,7 +16,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   get 'user_profile', to: 'users#profile', as: 'user_profile'
-  
+
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
+    # post 'assign_projects'
+  end
+
   root 'products#index'
 
   resources :projects do

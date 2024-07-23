@@ -9,7 +9,6 @@
   <%= javascript_importmap_tags %>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -47,12 +46,18 @@
           <li class="nav-item">
             <%= link_to 'Developers', developers_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to 'Project', projects_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'payment',new_payment_path,class: "nav-link" ,method: :post, local: false %>
-          </li>
+          <% if current_user.admin? %>
+            <li class="nav-item">
+              <%= link_to 'Projects', projects_path, class: "nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Assign Projects', assign_projects_path, class: "nav-link" %>
+            </li>
+          <% end %>
+            <li class="nav-item">
+              <%= link_to 'Users', users_path, class: "nav-link" %>
+            </li>
         </ul>
       <% end %>
     </div>
@@ -61,7 +66,7 @@
       <div id="navbarDropdown" data-bs-toggle="dropdown" class="large_icon">
       <% if user_signed_in? %>
         <% if current_user.avatar.attached? %>
-          <%= image_tag(current_user.avatar, class: 'rounded-circle avatar-sm' , style: 'width: 40px; height: 40px;') %>
+          <%= image_tag(current_user.avatar, class: 'rounded-circle avatar-sm', style: 'width: 40px; height: 40px;') %>
         <% else %>
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
@@ -87,11 +92,8 @@
         <% end %>
       </ul>
     </div>
-
   </div>
 </nav>
-
-
 
 <div class="container mt-4">
   <header>

@@ -1,0 +1,8 @@
+<h2>Assign Projects to <%= @user.email %></h2>
+
+<%= form_with(model: @user, url: assign_project_user_path(@user), method: :patch, local: true) do |form| %>
+  <%= form.label :projects %>
+  <%= form.collection_check_boxes :project_ids, Project.all, :id, :name %>
+
+  <%= form.submit 'Assign Projects', class: 'btn btn-primary' %>
+<% end %>

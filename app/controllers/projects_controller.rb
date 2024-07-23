@@ -1,11 +1,10 @@
-# app/controllers/projects_controller.rb
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: [:show, :edit, :update, :destroy, :check_tickets]
   before_action :authorize_project, only: [:show, :edit, :update, :destroy, :check_tickets]
 
   def index
-    @projects = policy_scope(Project.includes(:developers)).paginate(page: params[:page], per_page: 10)
+    @projects = policy_scope(Project).paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -56,6 +55,15 @@ class ProjectsController < ApplicationController
     @tickets = @project.tickets
   end
 
+  def assign_projects
+    p '---------------------'
+    @projects
+    p    
+    p '---------------------'
+
+    @projects = Project.all
+  end
+
   private
 
   def set_project
@@ -67,6 +75,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:project_name, :status, :start_date, :end_date, developer_ids: [])
+    params.require(:project).permit(:project_name, :status, :start_date, :end_date, developer_ids: [], user_ids: [])
   end
 end

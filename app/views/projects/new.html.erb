@@ -49,12 +49,17 @@
             <%= form.label :end_date, "End Date:" %>
             <%= form.date_field :end_date, class: "form-control",id: "project_end_date", placeholder: 'Enter the end date' %>
           </div>
+          <div>
+          <div class="form-group row mt-3 d-block">
+            <%= form.label :developers, "Select Developers:".html_safe %><br>
+            <%= form.collection_check_boxes(:developer_ids, Developer.all, :id, :name) %>
+          </div>
 
           <div class="form-group row mt-3 d-block">
-          <%= form.label :developers, "Select Developers:".html_safe %><br>
-          <%= form.collection_check_boxes(:developer_ids, Developer.all, :id, :name) %>
-        </div>
-
+            <%= form.label :users, "Select Userrs:".html_safe %><br>
+            <%= form.collection_check_boxes(:user_ids, User.all, :id, :email) %>
+          </div>
+          </div
           <div>
             <%= form.submit "Create", class: "btn btn-primary row mt-3" %>
             <%= link_to 'Back', projects_path, class: "btn btn-secondary margin-button" %>
