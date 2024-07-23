@@ -1,0 +1,29 @@
+<div class="mt-4">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="gray-header">ID</th>
+        <th class="gray-header">First Name</th>
+        <th class="gray-header">Last Name</th>
+        <th class="gray-header">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.firstname %></td>
+            <td><%= user.lastname %></td>
+            <td><%= user.email %></td>
+          </tr>
+       
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagination -->
+<div class="d-flex justify-content-center mt-4">
+  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+</div>
